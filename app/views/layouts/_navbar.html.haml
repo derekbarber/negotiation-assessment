@@ -1,0 +1,17 @@
+/ Fixed navbar
+.navbar.navbar-default.navbar-fixed-top{role: "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to root_path, html_options = { :class => 'smartsettle-brand' } do
+        -#= image_tag("logo_mini_sm.png", class: "mini-logo") 
+        Negotiation Styles
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        = navbar_list_item 'About', about_path
+        -#= navbar_list_item 'Contact', new_contact_us_path
+      %ul.nav.navbar-nav.navbar-right

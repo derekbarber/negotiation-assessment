@@ -1,0 +1,11 @@
+%div{id: 'footer'}
+  .container
+    .p{class: "text-muted"}
+      Copyright &copy; #{Time.now.year} 
+      &nbsp;&nbsp;
+      = link_to "Legal Notice", legal_notice_path
+      |
+      = link_to "Privacy Policy", privacy_policy_path
+      |
+      = link_to "Terms of Use", terms_path
+      
