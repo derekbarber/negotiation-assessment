@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.ui.all
+//= require bootstrap
+//= require smartadmin.config
+//= require smartadmin
 //= require_tree .
