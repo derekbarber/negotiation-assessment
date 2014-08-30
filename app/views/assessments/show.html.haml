@@ -1,0 +1,60 @@
+.row
+  .col-xs-12.col-sm-7.col-md-7.col-lg-4
+    %h1.page-title.txt-color-blueDark
+      -#%i.fa.fa-university.fa-fw
+      = @assessment.name
+
+.row
+  .col-xs-12.col-sm-10
+    %h3 Introduction
+    %p
+      = @assessment.overview
+
+.row
+  .col-xs-12.col-sm-10
+    %h3 Instructions
+    %p
+      = @assessment.instructions
+
+%br
+
+.row
+  %div.col-xs-12.col-sm-12.col-md-12.col-lg-12
+    .jarviswidget.jarviswidget-color-blueDark{"data-widget-colorbutton" => "false", "data-widget-editbutton" => "false", role: "widget", style: ""}
+      %header{:role => "heading"}
+        %span.widget-icon
+          %i.fa.fa-edit
+        %h2 Assessment
+        %span.jarviswidget-loader
+          %i.fa.fa-refresh.fa-spin
+      / widget div
+      %div{:role => "content"}
+        / widget edit box
+        .jarviswidget-editbox
+          / This area used as dropdown edit box
+        / end widget edit box
+        / widget content
+        .widget-body
+
+          %p Not at all Characteristic 0 – 1 – 2 – 3 – 4 – 5 – 6 – 7 Very Characteristic
+
+          %form
+            - @assessment.sections.each do |section|
+              %fieldset
+                %legend
+                  = section.title
+
+                - section.questions.each do |question|
+                  = render partial: "question", locals: {question: question}
+
+:javascript
+
+  $(document).ready(function() {
+
+    pageSetUp();
+
+    var $slider2 = $(".slider-ui").slider({ max: 8 , value: 4 });
+
+    // and then we can apply pips to it!
+    $slider2.slider("pips");
+  });

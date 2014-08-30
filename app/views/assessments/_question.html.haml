@@ -1,0 +1,44 @@
+.row
+  .col-sm-10.col-sm-offset-1
+    %h6
+      = question.question_text
+
+%br
+
+.row
+  .col-sm-8.col-sm-offset-1.col-xs-12
+    .form-group
+      .ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all.ui-slider-pips{'aria-disabled' => 'false', :id => "question#{question.id}"}
+        %a.ui-slider-handle.ui-state-default.ui-corner-all{:href => "#", :style => "left: 35%;"}
+        %span.ui-slider-pip.ui-slider-pip-first.ui-slider-pip-label.ui-slider-pip-0{:style => "left: 0%"}
+          %span.ui-slider-line
+          %span.ui-slider-label{"data-value" => "0"} 0
+        %span.ui-slider-pip.ui-slider-pip-1{:style => "left: 14.2000%"}
+          %span.ui-slider-line
+          %span.ui-slider-label{"data-value" => "1"} 1
+        %span.ui-slider-pip.ui-slider-pip-2{:style => "left: 28.4000%"}
+          %span.ui-slider-line
+          %span.ui-slider-label{"data-value" => "2"} 2
+        %span.ui-slider-pip.ui-slider-pip-3{:style => "left: 42.6000%"}
+          %span.ui-slider-line
+          %span.ui-slider-label{"data-value" => "3"} 3
+        %span.ui-slider-pip.ui-slider-pip-4{:style => "left: 56.8000%"}
+          %span.ui-slider-line
+          %span.ui-slider-label{"data-value" => "4"} 4
+        %span.ui-slider-pip.ui-slider-pip-5{:style => "left: 71.0000%"}
+          %span.ui-slider-line
+          %span.ui-slider-label{"data-value" => "5"} 5
+        %span.ui-slider-pip.ui-slider-pip-6{:style => "left: 85.2000%"}
+          %span.ui-slider-line
+          %span.ui-slider-label{"data-value" => "6"} 6
+        %span.ui-slider-pip.ui-slider-pip-last.ui-slider-pip-label.ui-slider-pip-7{:style => "left: 100.0000%"}
+          %span.ui-slider-line
+          %span.ui-slider-label{"data-value" => "7"} 7
+
+%hr
+%br
+
+:javascript
+
+  var $slider2 = $('#question#{question.id}').slider({ min: 0, max: 7 , value: 0, labels: true });
+  $slider2.slider("pips", { rest: "label" });

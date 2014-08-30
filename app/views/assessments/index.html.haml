@@ -1,0 +1,25 @@
+.col-xs-12.col-sm-7.col-md-7.col-lg-4
+  %h1.page-title.txt-color-blueDark
+    %i.fa.fa-university.fa-fw
+    Assessments
+
+.row
+  %div.col-xs-12.col-sm-12.col-md-12.col-lg-12
+    .jarviswidget.jarviswidget-color-blueDark{"data-widget-colorbutton" => "false", "data-widget-editbutton" => "false", role: "widget", style: ""}
+      %header{role: "heading"}
+        %h2
+          %strong Available Assessments
+        %span.jarviswidget-loader
+          %i.fa.fa-refresh.fa-spin
+      / widget div
+      %div{role: "content"}
+        .widget-body
+          .custom-scroll.table-responsive{style: "max-height:390px; overflow-y: auto;"}
+            - if @assessments.nil? || @assessments.count == 0
+              %p{class:"well well-small"} 
+                = fa_icon "info-circle"
+                No assessments available
+            - else
+              - @assessments.each do |assessment|
+                = link_to assessment.name, assessment
+
