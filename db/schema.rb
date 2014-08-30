@@ -36,8 +36,9 @@ ActiveRecord::Schema.define(version: 20140828160816) do
   end
 
   create_table "questions", force: true do |t|
-    t.string   "question"
-    t.string   "type"
+    t.string   "question_text"
+    t.string   "question_type"
+    t.string   "assessment_style"
     t.integer  "display_order"
     t.integer  "section_id"
     t.datetime "created_at"

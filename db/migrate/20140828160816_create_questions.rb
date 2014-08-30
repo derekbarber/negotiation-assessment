@@ -1,9 +1,9 @@
 class CreateQuestions < ActiveRecord::Migration
   def change
     create_table :questions do |t|
-      t.string :question
-      t.string :style
-      t.string :type
+      t.string :question_text
+      t.string :question_type
+      t.string :assessment_style
       t.integer :display_order
 
       t.belongs_to :section
