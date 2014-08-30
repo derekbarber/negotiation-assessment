@@ -47,6 +47,9 @@
                 - section.questions.each do |question|
                   = render partial: "question", locals: {question: question}
 
+          .widget-footer
+            = button_tag(type: 'submit', class: "btn btn-sm btn-success") do
+              <i class="fa fa-save"></i>&nbsp; Submit Assessment
 :javascript
 
   $(document).ready(function() {
