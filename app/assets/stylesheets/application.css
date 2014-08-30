@@ -12,6 +12,9 @@
  *
  *= require bootstrap
  *= require font-awesome
+ *= require custom
  *= require smartadmin
+ *= require jquery-ui-slider-pips
+ *= require site
  *= require_self
  */

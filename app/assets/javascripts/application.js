@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require smartadmin.config
 //= require smartadmin
+//= require jquery-ui-slider-pips
 //= require_tree .
