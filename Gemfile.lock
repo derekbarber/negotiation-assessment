@@ -207,6 +207,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   mailcatcher
   newrelic_rpm (>= 3.6.7)
   pg
