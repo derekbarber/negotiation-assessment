@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :admins
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   resources :assessments, :only => [:index, :show]
 
   match '/about',    to: 'static_pages#about',    via: 'get'
