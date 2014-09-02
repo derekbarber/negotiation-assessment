@@ -1,9 +1,9 @@
 class SetupHstore < ActiveRecord::Migration
   def self.up
-    execute "CREATE EXTENSION hstore"
+    enable_extension :hstore
   end
 
   def self.down
-    execute "DROP EXTENSION hstore"
+    disable_extension :hstore
   end
 end

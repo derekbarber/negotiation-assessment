@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+admin = Admin.create(email: "test@test.com", password: "changeme", password_confirmation: "changeme")
+
 organization = Organization.create(name: "Test")
 
 assessment = Assessment.create(organization_id: organization.id, name: "7 Negotiation Styles Inventory", overview: "This inventory has not been scientifically proven; it is, however, an excellent tool to begin exploring your own preferred negotiation style.  You will learn more about how you approach negotiation and what other options, or styles, can be available to you.",  instructions: "Consider your response in situation when you want something different than another person.  Note that the first section is deals with those situations where you are at a normal level of energy (you are ok).  The second deals with situations where you are at a higher level of emotional engagement in the negotiation (you are starting to feel strongly about the negotiation).  Rate each statement as being very characteristic for you, or as not at all characteristic, or somewhere in between.", status: "enabled")
