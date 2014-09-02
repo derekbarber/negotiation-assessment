@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20140828160816) do
 
   add_index "assessments", ["organization_id"], name: "index_assessments_on_organization_id", using: :btree
 
+  create_table "leading_statements", force: true do |t|
+    t.text     "text"
+    t.integer  "assessment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "leading_statements", ["assessment_id"], name: "index_leading_statements_on_assessment_id", using: :btree
+
   create_table "organizations", force: true do |t|
     t.string   "name"
     t.string   "logo"
@@ -39,22 +48,13 @@ ActiveRecord::Schema.define(version: 20140828160816) do
     t.string   "question_text"
     t.string   "question_type"
     t.string   "assessment_style"
-    t.integer  "display_order"
-    t.integer  "section_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "questions", ["section_id"], name: "index_questions_on_section_id", using: :btree
-
-  create_table "sections", force: true do |t|
-    t.text     "title"
+    t.integer  "leading_statement_id"
     t.integer  "display_order"
     t.integer  "assessment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sections", ["assessment_id"], name: "index_sections_on_assessment_id", using: :btree
+  add_index "questions", ["assessment_id"], name: "index_questions_on_assessment_id", using: :btree
 
 end

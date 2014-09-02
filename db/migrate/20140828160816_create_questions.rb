@@ -4,12 +4,13 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :question_text
       t.string :question_type
       t.string :assessment_style
+      t.integer :leading_statement_id
       t.integer :display_order
 
-      t.belongs_to :section
+      t.belongs_to :assessment
 
       t.timestamps
     end
-    add_index :questions, :section_id
+    add_index :questions, :assessment_id
   end
 end

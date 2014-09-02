@@ -1,4 +1,4 @@
 class Assessment < ActiveRecord::Base
-  has_many :sections
+  has_many :questions
   belongs_to :organization
 end
