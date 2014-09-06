@@ -79,4 +79,23 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { :host => "smartsettle.herokuapp.com" }
+
+  ActionMailer::Base.smtp_settings = {
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['MANDRILL_USERNAME'],
+    :password =>       ENV['MANDRILL_APIKEY'],
+    :domain =>         'heroku.com',
+    :authentication => :plain
+  }
+  ActionMailer::Base.delivery_method = :smtp
+
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Smartsettle Exception] ",
+      :sender_address => %{"notifier" <notifier@smartsettle.com>},
+      :exception_recipients => %w{db@smartsettle.com}
+    }
 end
