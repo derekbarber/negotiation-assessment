@@ -57,9 +57,9 @@
                   = render partial: "question", locals: {question: @question, answer: @answer}
 
             - elsif @page > (@assessment.questions.count-1)
-            
+
               %h4 Congratulations!
-              
+
               %p You have completed the assessment process
 
             .widget-footer

@@ -5,7 +5,7 @@ class RespondentsController < ApplicationController
 
     if params.has_key?(:initial_signup)
       @respondent.send_signup_email(params[:email])
-      redirect_to root_url
+      redirect_to root_url, :flash => { :notice => "Please check your Inbox for an email" }
     elsif params.has_key?(:access_code)
       respondent = Respondent.find_or_create_by(first_name: params[:respondent][:first_name], 
           last_name: params[:respondent][:last_name],
