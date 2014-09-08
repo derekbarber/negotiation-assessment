@@ -16,63 +16,68 @@
           %i.fa.fa-refresh.fa-spin
       / widget div
       %div{:role => "content"}
-        / widget edit box
-        .jarviswidget-editbox
-          / This area used as dropdown edit box
-        / end widget edit box
-        / widget content
         .widget-body
+          = form_for @assessment do |f|
+            = hidden_field_tag :page, @page+1
 
-          - if @page == 0
-
-            .well.no-padding
-              .bar-holder
-                .progress
-                  .progress-bar.bg-color-teal{"aria-valuenow" => "0", "aria-valuetransitiongoal" => "0", :style => "width: 0%;"}
-
-            .row
-              .col-xs-12.col-sm-10
-                %h3 Introduction
-                %p
-                  = @assessment.overview
-
-            .row
-              .col-xs-12.col-sm-10
-                %h3 Instructions
-                %p
-                  = @assessment.instructions
-          - else
-
-            .well.no-padding
-              %h4 Your Progress
-
-              .bar-holder
-                .progress
-                  .progress-bar.bg-color-teal{"aria-valuenow" => "#{@progress.to_i}", "aria-valuetransitiongoal" => "#{@progress.to_i}", :style => "width: #{@progress.to_i}%;"} #{@progress.to_i}%
-
-            %form
-              %fieldset
-                %legend
-                  = "Question #{@page}"
-
-                %h3
-                  = LeadingStatement.find(@question.leading_statement_id).text
-
-                = render partial: "question", locals: {question: @question}
-
-          .widget-footer
             - if @page == 0
-              = link_to assessment_path(@assessment, :page => @page+1), class: "btn btn-sm btn-primary" do
-                <i class="fa fa-angle-double-right"></i>&nbsp; Begin
-            - elsif @page < (@assessment.questions.count-1)
-              = link_to assessment_path(@assessment, :page => @page-1), class: "btn btn-sm btn-primary" do
-                <i class="fa fa-angle-double-left"></i>&nbsp; Previous
-              &nbsp;
-              = link_to assessment_path(@assessment, :page => @page+1), class: "btn btn-sm btn-primary" do
-                <i class="fa fa-angle-double-right"></i>&nbsp; Next
-            - else
-              = button_tag(type: 'submit', class: "btn btn-sm btn-success") do
-                <i class="fa fa-save"></i>&nbsp; Submit Assessment
+
+              .well.no-padding
+                .bar-holder
+                  .progress
+                    .progress-bar.bg-color-teal{"aria-valuenow" => "0", "aria-valuetransitiongoal" => "0", :style => "width: 0%;"}
+
+              .row
+                .col-xs-12.col-sm-10
+                  %h3 Introduction
+                  %p
+                    = @assessment.overview
+
+              .row
+                .col-xs-12.col-sm-10
+                  %h3 Instructions
+                  %p
+                    = @assessment.instructions
+            - elsif @page <= (@assessment.questions.count-1)
+
+              .well
+                %h4 Your Progress
+
+                .bar-holder
+                  .progress
+                    .progress-bar.bg-color-teal{"aria-valuenow" => "#{@progress.to_i}", "aria-valuetransitiongoal" => "#{@progress.to_i}", :style => "width: #{@progress.to_i}%;"} #{@progress.to_i}%
+
+                %fieldset
+                  %legend
+                    = "Question #{@page} of #{@assessment.questions.count+1}"
+
+                  %h3
+                    = LeadingStatement.find(@question.leading_statement_id).text
+
+                  = render partial: "question", locals: {question: @question, answer: @answer}
+
+            - elsif @page > (@assessment.questions.count-1)
+            
+              %h4 Congratulations!
+              
+              %p You have completed the assessment process
+
+            .widget-footer
+              - if @page == 0
+                = link_to assessment_path(@assessment, :page => @page+1), class: "btn btn-sm btn-primary" do
+                  <i class="fa fa-angle-double-right"></i>&nbsp; Begin
+              - elsif @page < (@assessment.questions.count-1)
+                = link_to assessment_path(@assessment, :page => @page-1), class: "btn btn-sm btn-primary" do
+                  <i class="fa fa-angle-double-left"></i>&nbsp; Previous
+                &nbsp;
+                = button_tag(type: 'submit', class: "btn btn-sm btn-primary") do
+                  <i class="fa fa-angle-double-right"></i>&nbsp; Next
+              - elsif @page == (@assessment.questions.count-1)
+                = link_to assessment_path(@assessment, :page => @page-1), class: "btn btn-sm btn-primary" do
+                  <i class="fa fa-angle-double-left"></i>&nbsp; Previous
+                &nbsp;
+                = button_tag(type: 'submit', class: "btn btn-sm btn-success") do
+                  <i class="fa fa-save"></i>&nbsp; Submit Assessment
 :javascript
 
   $(document).ready(function() {

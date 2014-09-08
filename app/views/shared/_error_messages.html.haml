@@ -1,0 +1,9 @@
+- if f.errors.any?
+  .error_explanation
+    .alert.alert-danger
+      %h3
+        = pluralize(f.errors.count, "error")
+        prohibited the negotiation from being saved:
+      %ul
+        - f.errors.full_messages.each do |message|
+          %li=message

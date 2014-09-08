@@ -5,6 +5,9 @@
 
 %br
 
+= hidden_field_tag "question_#{question.id}", answer, :id => "answer_value"
+= hidden_field_tag "question_id", question.id
+
 .row
   .col-sm-2.col-xs-3
     Not at all Characteristic
@@ -43,5 +46,8 @@
 
 :javascript
 
-  var $slider2 = $('#question#{question.id}').slider({ min: 0, max: 7 , value: 0, labels: true });
+  var $slider2 = $('#question#{question.id}').slider({ min: 0, max: 7 , value: #{answer}, labels: true });
   $slider2.slider("pips", { rest: "label" });
+  $slider2.on("slidechange", function(e,ui) {
+    $('#answer_value').val(ui.value);
+  });

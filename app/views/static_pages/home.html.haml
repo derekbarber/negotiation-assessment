@@ -1,0 +1,18 @@
+.jumbotron
+  %h1 Negotiation Assessment Styles Survey
+  %p
+    Please enter your email address to get started
+  %p
+    = form_for @respondent, :html => {class: "smart-form"} do |f|
+      = hidden_field_tag "initial_signup", true
+      = render "shared/error_messages", :f => @respondent
+
+      .row
+        .section{class:"col col-6"}
+          .col-md-6
+            %label.input
+              = f.text_field :email, :type => "email", :class => "input-lg", :placeholder => "Your Email"
+          .col-md-6
+            &nbsp;
+            = f.submit "Get Started", class: "btn btn-lg btn-primary"
+
