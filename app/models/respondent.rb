@@ -15,8 +15,8 @@ class Respondent < ActiveRecord::Base
          :email=> email
        }
      ],
-     :html=>"<html><body><h1>Hi there,</h1><p>to get started with the negotiation assessment wizard, please click this link:</p>http://negotiation-assessment.herokuapp.com/respondents/new</body></html>",
-     :from_email=>"sender@yourdomain.com"
+     :html=>"<html><h1>Hi there,</h1><p>to get started with the negotiation assessment wizard, please click this link:</p>http://negotiation-assessment.herokuapp.com/respondents/new</html>",
+     :from_email=>"derek@smartsettle.com"
     }
     sending = m.messages.send message
     puts sending
