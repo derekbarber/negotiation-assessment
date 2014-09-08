@@ -7,10 +7,9 @@ class CreateQuestions < ActiveRecord::Migration
       t.integer :leading_statement_id
       t.integer :display_order
 
-      t.belongs_to :assessment
+      t.belongs_to :assessment, index: true
 
       t.timestamps
     end
-    add_index :questions, :assessment_id
   end
 end

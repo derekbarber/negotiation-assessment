@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906141938) do
+ActiveRecord::Schema.define(version: 20140902153748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,13 +39,16 @@ ActiveRecord::Schema.define(version: 20140906141938) do
     t.string   "name",            default: ""
     t.text     "overview",        default: ""
     t.text     "instructions",    default: ""
+    t.string   "access_code"
     t.string   "status"
     t.integer  "organization_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "assessments", ["organization_id"], name: "index_assessments_on_organization_id", using: :btree
+  add_index "assessments", ["user_id"], name: "index_assessments_on_user_id", using: :btree
 
   create_table "leading_statements", force: true do |t|
     t.text     "text"
@@ -96,8 +99,7 @@ ActiveRecord::Schema.define(version: 20140906141938) do
 
   create_table "users", force: true do |t|
     t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "name"
     t.string   "access_code"
     t.integer  "organization_id"
     t.datetime "created_at"

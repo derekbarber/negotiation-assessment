@@ -4,12 +4,13 @@ class CreateAssessments < ActiveRecord::Migration
       t.string :name, :default => ''
       t.text :overview, :default => ''
       t.text :instructions, :default => ''
+      t.string :access_code
       t.string :status
 
-      t.belongs_to :organization
+      t.belongs_to :organization, index: true
+      t.belongs_to :user, index: true
 
       t.timestamps
     end
-    add_index :assessments, :organization_id
   end
 end
