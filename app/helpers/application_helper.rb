@@ -1,4 +1,13 @@
 module ApplicationHelper
+  def full_title(page_title)
+    base_title = "Negotiation Assessment"
+    if page_title.empty?
+      base_title
+    else
+      "#{base_title} | #{page_title}"
+    end
+  end
+
   def navbar_list_item(text, path, opts={})
     return if opts[:hide]
     cls = request.fullpath == path ? 'active' : ''
