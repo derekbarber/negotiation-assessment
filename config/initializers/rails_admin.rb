@@ -4,6 +4,9 @@ RailsAdmin.config do |config|
 
   ## == Devise ==
   RailsAdmin.config do |config|
+    class RailsAdmin::Config::Fields::Types::Inet < RailsAdmin::Config::Fields::Base
+      RailsAdmin::Config::Fields::Types::register(self)
+    end
     config.authenticate_with do
       warden.authenticate! scope: :admin
     end

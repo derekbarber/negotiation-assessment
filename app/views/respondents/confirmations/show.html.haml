@@ -1,0 +1,33 @@
+- provide(:title, 'Enter Password')
+
+.row
+  .col-xs-12.col-sm-12.col-md-5.col-lg-4
+    .well.no-padding
+
+      = form_for(resource, :as => resource_name, :url => update_user_confirmation_path, :id => 'activation-form', :html => {:class => "smart-form client-form", :method => :patch}) do |f|
+        %header
+          You're almost done! Now create a password to securely access your account.
+        = devise_error_messages!
+
+        %fieldset
+          %section
+            %label.label= f.label :password
+            %label.input
+              %i.icon-append.fa.fa-lock
+              = f.password_field :password, autocomplete: "off", :required => true, :autofocus => true
+              %b.tooltip.tooltip-top-right
+                %i.fa.fa-lock.txt-color-teal
+                Password
+          %section
+            %label.label= f.label :password_confirmation
+            %label.input
+              %i.icon-append.fa.fa-lock
+              = f.password_field :password_confirmation, autocomplete: "off", :required => true
+              %b.tooltip.tooltip-top-right
+                %i.fa.fa-lock.txt-color-teal
+                Password confirmation
+
+        = hidden_field_tag :confirmation_token,@confirmation_token
+
+        %footer
+          = f.submit "Activate", :class => "btn btn-primary"

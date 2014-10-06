@@ -1,0 +1,51 @@
+- provide(:title, 'Edit Your Profile')
+
+.row
+  .col-xs-12.col-sm-12.col-md-5.col-lg-4
+    .well.no-padding
+
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "smart-form client-form", :method => :post}) do |f|
+        %header
+          Edit Your Profile
+        = devise_error_messages!
+
+        %fieldset
+          %section
+            %label.label= f.label :email
+            %label.input
+              %i.icon-append.fa.fa-user
+              = f.email_field :email, autofocus: true, :required => true, :autofocus => true
+              %b.tooltip.tooltip-top-right
+                %i.fa.fa-user.txt-color-teal
+                Email address
+          %section
+            %label.label= f.label :password
+            %label.input
+              %i.icon-append.fa.fa-lock
+              = f.password_field :password, autocomplete: "off", :required => true, :autofocus => true
+              %b.tooltip.tooltip-top-right
+                %i.fa.fa-lock.txt-color-teal
+                Password
+          %section
+            %label.label= f.label :password_confirmation
+            %label.input
+              %i.icon-append.fa.fa-lock
+              = f.password_field :password_confirmation, autocomplete: "off", :required => true, :autofocus => true
+              %b.tooltip.tooltip-top-right
+                %i.fa.fa-lock.txt-color-teal
+                Password confirmation
+          %section
+            %label.label= f.label :current_password
+            %label.input
+              %i.icon-append.fa.fa-lock
+              = f.password_field :current_password, autocomplete: "off", :required => true, :autofocus => true
+              %b.tooltip.tooltip-top-right
+                %i.fa.fa-lock.txt-color-teal
+                We need your current password to confirm your changes"
+          %section
+            %label.checkbox
+              = f.check_box :remember_me
+              = succeed "Stay signed in" do
+                %i
+        %footer
+          = f.submit "Update", :class => "btn btn-primary"

@@ -1,0 +1,24 @@
+.row
+  .col-xs-12.col-sm-12.col-md-5.col-lg-4
+    .well.no-padding
+
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "smart-form client-form", :method => :post}) do |f|
+        %header
+          Forgot your password?
+        = devise_error_messages!
+
+        %fieldset
+          %section
+            %label.label= f.label :email
+            %label.input
+              %i.icon-append.fa.fa-user
+              = f.email_field :email, autofocus: true, :required => true, :autofocus => true
+              %b.tooltip.tooltip-top-right
+                %i.fa.fa-user.txt-color-teal
+                Please enter email address
+
+        %footer= f.submit "Send me reset password instructions", :class => "btn btn-primary"
+
+-#.signin-links
+  -#= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+
