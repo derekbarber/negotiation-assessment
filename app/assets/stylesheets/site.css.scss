@@ -5,3 +5,21 @@ body {
   overflow: auto;
   padding-bottom: 70px;
 }
+
+fieldset legend {
+  font-size: 22px;
+  padding-top: 10px;
+}
+
+p {
+  font-size: 14px;
+}
+
+.label-lg{
+  line-height: normal;
+  font-size: 14px;
+}
+
+.ui-slider-label {
+  font-size: 120%;
+}

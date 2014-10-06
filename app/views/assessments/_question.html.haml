@@ -1,7 +1,8 @@
 .row
   .col-sm-10.col-sm-offset-1
-    %h6
-      = question.question_text
+    %h3
+      %strong
+        = question.question_text
 
 %br
 
@@ -9,7 +10,7 @@
 = hidden_field_tag "question_id", question.id
 
 .row
-  .col-sm-2.col-xs-3
+  .col-sm-2.col-xs-3.label-lg
     Not at all Characteristic
   .col-sm-8.col-xs-6
     .form-group
@@ -39,7 +40,7 @@
         %span.ui-slider-pip.ui-slider-pip-last.ui-slider-pip-label.ui-slider-pip-7{:style => "left: 100.0000%"}
           %span.ui-slider-line
           %span.ui-slider-label{"data-value" => "7"} 7
-  .col-sm-2.col-xs-3
+  .col-sm-2.col-xs-3.label-lg
     Very Characteristic
 %hr
 %br
