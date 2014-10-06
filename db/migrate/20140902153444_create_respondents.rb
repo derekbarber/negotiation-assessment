@@ -1,7 +1,7 @@
 class CreateRespondents < ActiveRecord::Migration
   def change
     create_table :respondents do |t|
-      t.string :email
+      t.string :email,              null: false, default: ""
       t.string :first_name
       t.string :last_name
       t.string :access_code
