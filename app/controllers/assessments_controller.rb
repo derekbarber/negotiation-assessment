@@ -7,6 +7,11 @@ class AssessmentsController < ApplicationController
       respondent = Respondent.find(current_respondent.id)
       respondent.first_name = params[:first_name]
       respondent.last_name = params[:last_name]
+      response_values = {}
+      assessment.questions.each do |question|
+        response_values["question_#{question.id}"] = 0
+      end
+      respondent.responses = response_values
       respondent.save
     end
 
@@ -17,14 +22,6 @@ class AssessmentsController < ApplicationController
         assessment = Assessment.find_by(organization_id: organization.id, user_id: user.id, access_code: params[:access_code][:assessment])
       end
       if assessment
-
-        response_values = {}
-        assessment.questions.each do |question|
-          response_values["question_#{question.id}"] = 0
-        end
-        respondent.responses = response_values
-        respondent.save!
-
         redirect_to assessment
       else
         flash[:error] = "Couldn't find this assessment"
