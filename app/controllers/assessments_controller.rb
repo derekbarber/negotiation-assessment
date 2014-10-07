@@ -7,11 +7,7 @@ class AssessmentsController < ApplicationController
       respondent = Respondent.find(current_respondent.id)
       respondent.first_name = params[:first_name]
       respondent.last_name = params[:last_name]
-      response_values = {}
-      assessment.questions.each do |question|
-        response_values["question_#{question.id}"] = 0
-      end
-      respondent.responses = response_values
+      respondent.responses = {}
       respondent.save
     end
 
