@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery-ui
+//= require jquery.ui.touch-punch
 //= require bootstrap
 //= require smartadmin.config
 //= require smartadmin
