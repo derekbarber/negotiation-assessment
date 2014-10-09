@@ -1,6 +1,6 @@
 class AssessmentsController < ApplicationController
+  before_filter :authenticate_respondent!
   before_action :find_respondent, only: [:show, :update]
-
 
   def create
     if (params.has_key?(:first_name) && params.has_key?(:last_name))

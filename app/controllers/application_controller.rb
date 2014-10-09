@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    new_assessment_path
+    if resource.class == Respondent
+      new_assessment_path
+    elsif resource.class ==  Admin
+      rails_admin_path
+    else
+      new_assessment_path
+    end
   end
 end

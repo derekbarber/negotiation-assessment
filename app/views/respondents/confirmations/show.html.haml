@@ -4,7 +4,7 @@
   .col-xs-12.col-sm-12.col-md-5.col-lg-4
     .well.no-padding
 
-      = form_for(resource, :as => resource_name, :url => update_user_confirmation_path, :id => 'activation-form', :html => {:class => "smart-form client-form", :method => :patch}) do |f|
+      = form_for(resource, :as => resource_name, :url => update_respondent_confirmation_path, :id => 'activation-form', :html => {:class => "smart-form client-form", :method => :patch}) do |f|
         %header
           You're almost done! Now create a password to securely access your account.
         = devise_error_messages!

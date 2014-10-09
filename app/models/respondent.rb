@@ -45,23 +45,4 @@ class Respondent < ActiveRecord::Base
     end
   end
 
-  def send_signup_email(email)
-    require 'mandrill'
-    m = Mandrill::API.new
-    message = {
-     :subject=> "Welcome to the Negotiation Assessment",
-     :from_name=> "James Loewen",
-     :text=>"Hi there,\n\nto get started with the negotiation assessment wizard, please click this link:\n\nhttp://negotiation-assessment.herokuapp.com/respondents/new",
-     :to=>[
-       {
-         :email=> email
-       }
-     ],
-     :html=>"<html><h1>Hi there,</h1><p>to get started with the negotiation assessment wizard, please click this link:</p>http://negotiation-assessment.herokuapp.com/respondents/new</html>",
-     :from_email=>"derek@smartsettle.com"
-    }
-    sending = m.messages.send message
-    puts sending
-  end
-  
 end

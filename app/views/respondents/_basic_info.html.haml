@@ -1,0 +1,20 @@
+%h2 Your Basic Info
+%fieldset
+  .form-group
+    = f.label :first_name, :class => "col-md-5 control-label"
+    .col-md-7
+      = f.text_field :first_name, :class => "form-control"
+  .form-group
+    = f.label :last_name, :class => "col-md-5 control-label"
+    .col-md-7
+      = f.text_field :last_name, :class => "form-control"
+  .form-group
+    = f.label :email, :class => "col-md-5 control-label"
+    .col-md-7
+      = f.text_field :email, :class => "form-control"
+
+.form-group
+  .col-md-offset-5.col-md-7.col-sm-12
+    = button_tag(type: 'submit', class: "btn btn-sm btn-primary") do
+      %i.fa.fa-save
+      Update Your Info

@@ -1,9 +1,9 @@
 # app/controllers/confirmations_controller.rb
 class ConfirmationsController < Devise::ConfirmationsController
   # Remove the first skip_before_filter (:require_no_authentication) if you
-  # don't want to enable logged users to access the confirmation page.
+  # don't want to enable logged respondents to access the confirmation page.
   skip_before_filter :require_no_authentication
-  skip_before_filter :authenticate_user!
+  skip_before_filter :authenticate_respondent!
 
   # PUT /resource/confirmation
   def update
@@ -22,7 +22,7 @@ class ConfirmationsController < Devise::ConfirmationsController
     end
 
     if !@confirmable.errors.empty?
-      render 'users/confirmations/new' #Change this if you don't have the views on default path
+      render 'respondents/confirmations/new' #Change this if you don't have the views on default path
     end
   end
 
@@ -37,7 +37,7 @@ class ConfirmationsController < Devise::ConfirmationsController
     end
     if !@confirmable.errors.empty?
       self.resource = @confirmable
-      render 'users/confirmations/new' #Change this if you don't have the views on default path 
+      render 'respondents/confirmations/new' #Change this if you don't have the views on default path 
     end
   end
 
@@ -46,7 +46,7 @@ class ConfirmationsController < Devise::ConfirmationsController
   def with_unconfirmed_confirmable
     original_token = params[:confirmation_token]
     confirmation_token = Devise.token_generator.digest(Respondent, :confirmation_token, original_token)
-    @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, confirmation_token)
+    @confirmable = Respondent.find_or_initialize_with_error_by(:confirmation_token, confirmation_token)
     if !@confirmable.new_record?
       @confirmable.only_if_unconfirmed {yield}
     end
@@ -56,7 +56,7 @@ class ConfirmationsController < Devise::ConfirmationsController
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
     self.resource = @confirmable
-    render 'users/confirmations/show' #Change this if you don't have the views on default path
+    render 'respondents/confirmations/show' #Change this if you don't have the views on default path
   end
 
   def do_confirm

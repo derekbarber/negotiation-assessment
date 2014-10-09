@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
-  devise_for :respondents
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  resources :respondents, :only => [:edit, :update]
+  as :respondent do
+    patch '/respondent/confirmation' => 'confirmations#update', :via => :patch, :as => :update_respondent_confirmation
+  end
+  devise_for :respondents, :controllers => { :registrations => "registrations", :confirmations => "confirmations" }
+
   resources :assessments, :only => [:show, :update, :new, :create]
-  #resources :respondents, :only => [:create, :new]
 
   match '/about',    to: 'static_pages#about',    via: 'get'
   match '/terms-of-use',  as: "terms", to: 'static_pages#terms_of_use',  via: 'get'
