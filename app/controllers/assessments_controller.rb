@@ -55,7 +55,7 @@ class AssessmentsController < ApplicationController
 
     @progress = (@page.to_f / @assessment.questions.count) * 100 if @page > 0
 
-    @page > 0 ? @question = @assessment.questions.limit(1).offset(@page).first : @question = nil
+    @page > 0 ? @question = @assessment.questions.limit(1).offset(@page-1).first : @question = nil
 
     if @question
       @leading_statement = LeadingStatement.find(@question.leading_statement_id)
