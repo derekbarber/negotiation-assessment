@@ -21,6 +21,14 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  #config.included_models = [
+  #  "Question",
+  #  "Assessment",
+  #  "LeadingStatement",
+  #  "Admin"
+  #]
+
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -32,6 +40,7 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
+    nestable
     ## With an audit adapter, you can add:
     # history_index
     # history_show
