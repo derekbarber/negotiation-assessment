@@ -19,6 +19,7 @@ gem 'pg'
 gem 'prawn'
 gem 'sass-rails'
 gem 'rails_admin'
+gem 'rails_admin_nestable'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 
