@@ -61,6 +61,16 @@ class AssessmentsController < ApplicationController
       @leading_statement = LeadingStatement.find(@question.leading_statement_id)
       @respondent.responses && @respondent.responses.has_key?("question_#{@question.id}") ?  @answer = @respondent.responses["question_#{@question.id}"] : @answer = 0
     end
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ResultsReportPdf.new(current_respondent)
+        send_data pdf.render, filename: "negotiation_styles_report.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   private

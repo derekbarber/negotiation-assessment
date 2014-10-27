@@ -8,6 +8,18 @@ class Respondent < ActiveRecord::Base
   belongs_to :user
   belongs_to :assessment
 
+
+  def calculate_score(style)
+    questions = Question.where(assessment_style: style)
+    
+    score = 0
+    questions.each do |question|
+      score = score + responses["question_#{question.id}"].to_i
+    end
+    
+    score
+  end
+
   def password_required?
     super if confirmed?
   end
