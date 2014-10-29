@@ -9,8 +9,14 @@ class Respondent < ActiveRecord::Base
   belongs_to :assessment
 
 
-  def calculate_score(style)
-    questions = Question.where(assessment_style: style)
+  def calculate_score(style, context)
+    if context == 'unstressed'
+      leading_statement = LeadingStatement.find_by(context_message: 'Low stress context')
+    elsif context == 'stressed'
+      leading_statement = LeadingStatement.find_by(context_message: 'High stress context')
+    end
+
+    questions = Question.where(assessment_style: style, leading_statement_id: leading_statement.id)
     
     score = 0
     questions.each do |question|

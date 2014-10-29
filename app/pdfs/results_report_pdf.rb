@@ -18,7 +18,7 @@ class ResultsReportPdf < PdfReport
     move_down 20
     text 'Stressed Results', size: 14, style: :bold
     move_down 10
-    #display_results_table('stressed')
+    display_results_table('stressed')
 
     move_down 30
     text 'Negotiation Styles', size: 16, style: :bold
@@ -55,21 +55,29 @@ class ResultsReportPdf < PdfReport
   def unstressed_data
     [["Collaborate", "Compete", "Compromise", "Abstain", "Accommodate", "Status Quo", "Impose"],
      [
-      @respondent.calculate_score('Collaborative'),
-      @respondent.calculate_score('Compete'),
-      @respondent.calculate_score('Compromise'), 
-      @respondent.calculate_score('Abstain'), 
-      @respondent.calculate_score('Accommodate'), 
-      @respondent.calculate_score('Status Quo'), 
-      @respondent.calculate_score('Impose')
+      @respondent.calculate_score('Collaborative', 'unstressed'),
+      @respondent.calculate_score('Compete', 'unstressed'),
+      @respondent.calculate_score('Compromise', 'unstressed'), 
+      @respondent.calculate_score('Abstain', 'unstressed'), 
+      @respondent.calculate_score('Accommodate', 'unstressed'), 
+      @respondent.calculate_score('Status Quo', 'unstressed'), 
+      @respondent.calculate_score('Impose', 'unstressed')
       ]]
 
     #@table_data ||= @respondent.responses.map { |e| [e.id, e.name, e.created_at.strftime("%m/%d/%y"), e.created_by.try(:full_name)] }
   end
 
   def stressed_data
-    [0][0] = [5, 5, 2, 1, 5, 2, 3]
-    #@table_data ||= @respondent.responses.map { |e| [e.id, e.name, e.created_at.strftime("%m/%d/%y"), e.created_by.try(:full_name)] }
+    [["Collaborate", "Compete", "Compromise", "Abstain", "Accommodate", "Status Quo", "Impose"],
+     [
+      @respondent.calculate_score('Collaborative', 'stressed'),
+      @respondent.calculate_score('Compete', 'stressed'),
+      @respondent.calculate_score('Compromise', 'stressed'), 
+      @respondent.calculate_score('Abstain', 'stressed'), 
+      @respondent.calculate_score('Accommodate', 'stressed'), 
+      @respondent.calculate_score('Status Quo', 'stressed'), 
+      @respondent.calculate_score('Impose', 'stressed')
+      ]]
   end
 
   def abstain_style
