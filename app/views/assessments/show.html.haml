@@ -75,9 +75,13 @@
 
               %hr
 
-              %p You have completed the assessment process, you will receive your report in your email inbox soon.  If you have submitted this assessment through a third party, your provider will also receive a copy.
+              .alert.alert-info You have completed the assessment process, you will receive your report in your email inbox soon.  If you have submitted this assessment through a third party, your provider will also receive a copy.
 
-              = link_to "Download Report (PDF)", assessment_path(@assessment, format: "pdf")
+              = link_to assessment_path(@assessment, format: "pdf"), :class => "btn btn-lg btn-success", :target => "blank" do
+                %span.glyphicon.glyphicon-download-alt
+                Download Report (PDF)
+              
+              %hr
 
             .widget-footer
               - if @page == 0
