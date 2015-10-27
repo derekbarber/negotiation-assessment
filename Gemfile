@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.1.3'
+ruby '2.2.3'
 
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.4'
 
 gem 'coffee-rails'
 gem 'devise'
@@ -53,7 +53,6 @@ group :test do
 end
 
 group :staging, :production do
-  gem 'newrelic_rpm', '>= 3.6.7'
   gem 'rails_12factor'
 end
 
